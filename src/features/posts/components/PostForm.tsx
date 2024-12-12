@@ -15,13 +15,30 @@ import { LoadingButton } from "@mui/lab";
 import { NavLink } from "react-router-dom";
 import { CategoryApi } from "../../../api/categories.api";
 import { toast } from "react-toastify";
+import { Post, PostCreate } from "../types";
+import { UserApi } from "../../../api/users.api";
+import { PostApi } from "../../../api/posts.api";
 
 const filter = createFilterOptions();
+
+interface Category {
+  createdAt: Date;
+  id: string;
+  name: string;
+  updatedAt: string;
+}
+
+interface AddCategory {
+  inputValue: string;
+  name: string;
+}
 
 export function PostForm() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [categories, setCategories] = useState<any[]>([]);
-  const [choosenCategories, setChoosenCategories] = useState<string[]>([]);
+  const [choosenCategories, setChoosenCategories] = useState<
+    (Category | AddCategory)[]
+  >([]);
   const {
     register,
     handleSubmit,
@@ -45,23 +62,24 @@ export function PostForm() {
   }, []);
 
   const onSubmit = async (data: any) => {
-    console.log(data);
-    console.log(choosenCategories);
+    const post: any = {
+      title: data.title,
+      description: data.description,
+      content: data.content,
+      categories: choosenCategories.map((category) => {
+        const { name, inputValue } = category;
+        return inputValue ? inputValue : name;
+      }),
+    };
+
+    console.log(post);
   };
 
-  const handleCategoriesChange = (_: any, value: any) => {
-    if (choosenCategories.some((category) => category === value.name)) {
-      toast.error("La categoría ya ha sido seleccionada");
-      return;
-    }
-
-    if (typeof value === "string") {
-      setChoosenCategories((prev) => [...prev, value]);
-    } else if (value && value.inputValue) {
-      setCategories([...categories, { name: value.inputValue }]);
-    } else {
-      setChoosenCategories(value);
-    }
+  const handleCategoriesChange = (
+    _: any,
+    value: (Category | AddCategory)[]
+  ) => {
+    setChoosenCategories(value);
   };
 
   return (
@@ -69,7 +87,16 @@ export function PostForm() {
       <Card
         component="form"
         onSubmit={handleSubmit(onSubmit)}
-        sx={{ display: "flex", flexDirection: "column", gap: 2, padding: 2 }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          padding: 2,
+          width: {
+            xs: 350,
+            md: 600,
+          },
+        }}
       >
         <TextField
           {...register("title")}

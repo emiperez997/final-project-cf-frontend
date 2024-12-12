@@ -1,3 +1,4 @@
+import { PostCreate } from "../features/posts/types";
 import { apiClient } from "./index";
 
 export class PostApi {
@@ -10,4 +11,6 @@ export class PostApi {
     const response = await apiClient.get(`/posts/${id}`);
     return response.data;
   }
+
+  static async createPost({ post }: { post: PostCreate }) {}
 }

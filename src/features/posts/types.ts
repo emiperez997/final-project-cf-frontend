@@ -8,6 +8,13 @@ export interface Post {
   createdAt?: string;
 }
 
+export interface PostCreate {
+  title: string;
+  content: string;
+  description: string;
+  categories: string[];
+}
+
 export interface Category {
   category: {
     name: string;
