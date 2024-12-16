@@ -33,6 +33,7 @@ export function LoginForm() {
   const navigate = useNavigate();
 
   const setUser = useAppStore((state) => state.setUser);
+  const setToken = useAppStore((state) => state.setToken);
 
   const onSubmit: SubmitHandler<LoginFormInputs> = async (
     data: LoginFormInputs
@@ -49,7 +50,7 @@ export function LoginForm() {
       const decoded: UserToken = jwtDecode(token);
 
       setUser(decoded);
-      localStorage.setItem("user", JSON.stringify(decoded));
+      setToken(token);
 
       toast.success("Inicio de sesión exitoso");
 

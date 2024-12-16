@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { RestrictedRoute } from "./common/RestrictedRoute";
 import { ProtectedRoute } from "./common/ProtectedRoute";
 import { ProfilePage } from "../features/profile/pages/ProfilePage";
-import { PostCreatePage } from "../features/posts/pages/PostCreatePage";
+import { PostCreatePage } from "../features/posts/pages/PostFormPage";
 
 export function MainRoutes() {
   const initializeUser = useAppStore((state) => state.initializeUser);
@@ -37,6 +37,14 @@ export function MainRoutes() {
           }
         />
         <Route path="/posts/:id" element={<PostDetailPage />} />
+        <Route
+          path="/posts/:id/edit"
+          element={
+            <ProtectedRoute>
+              <PostCreatePage />
+            </ProtectedRoute>
+          }
+        />
 
         <Route path="/contact" element={<ContactPage />} />
         <Route
