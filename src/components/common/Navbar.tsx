@@ -55,7 +55,7 @@ const settings = [
   },
   {
     name: "Dashboard",
-    path: "/dashboard",
+    path: "/admin/dashboard",
   },
 ];
 
@@ -211,24 +211,49 @@ export function Navbar() {
                 onClose={handleCloseUserMenu}
               >
                 {settings.map(({ name, path }) => {
-                  return (
-                    <MenuItem key={name} onClick={handleCloseUserMenu}>
-                      <NavLink
-                        to={path}
-                        className={({ isActive }) => (isActive ? "active" : "")}
-                        style={{
-                          textDecoration: "none",
-                        }}
-                      >
-                        <Typography
-                          color="primary"
-                          sx={{ textAlign: "center" }}
+                  if (user?.role === "user" && name === "Perfil") {
+                    return (
+                      <MenuItem key={name} onClick={handleCloseUserMenu}>
+                        <NavLink
+                          to={path}
+                          className={({ isActive }) =>
+                            isActive ? "active" : ""
+                          }
+                          style={{
+                            textDecoration: "none",
+                          }}
                         >
-                          {name}
-                        </Typography>
-                      </NavLink>
-                    </MenuItem>
-                  );
+                          <Typography
+                            color="primary"
+                            sx={{ textAlign: "center" }}
+                          >
+                            {name}
+                          </Typography>
+                        </NavLink>
+                      </MenuItem>
+                    );
+                  } else if (user?.role === "admin" && name === "Dashboard") {
+                    return (
+                      <MenuItem key={name} onClick={handleCloseUserMenu}>
+                        <NavLink
+                          to={path}
+                          className={({ isActive }) =>
+                            isActive ? "active" : ""
+                          }
+                          style={{
+                            textDecoration: "none",
+                          }}
+                        >
+                          <Typography
+                            color="primary"
+                            sx={{ textAlign: "center" }}
+                          >
+                            {name}
+                          </Typography>
+                        </NavLink>
+                      </MenuItem>
+                    );
+                  }
                 })}
 
                 <MenuItem onClick={handleCloseUserMenu}>

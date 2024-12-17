@@ -14,6 +14,7 @@ import { RestrictedRoute } from "./common/RestrictedRoute";
 import { ProtectedRoute } from "./common/ProtectedRoute";
 import { ProfilePage } from "../features/profile/pages/ProfilePage";
 import { PostCreatePage } from "../features/posts/pages/PostFormPage";
+import { DashboardPage } from "../features/admin/pages/DashboardPage";
 
 export function MainRoutes() {
   const initializeUser = useAppStore((state) => state.initializeUser);
@@ -68,6 +69,15 @@ export function MainRoutes() {
           element={
             <ProtectedRoute>
               <ProfilePage />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/dashboard"
+          element={
+            <ProtectedRoute role="admin">
+              <DashboardPage />
             </ProtectedRoute>
           }
         />
