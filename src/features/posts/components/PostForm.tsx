@@ -78,8 +78,6 @@ export function PostForm(
               inputValue: category.name,
             }))
           );
-
-          console.log(choosenCategories);
         } catch (error: any) {
           console.error(error);
         }

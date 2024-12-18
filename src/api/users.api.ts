@@ -18,4 +18,24 @@ export class UserApi {
   static async getUsers() {
     return apiClient.get("/users");
   }
+
+  static async deleteUser(id: string) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      throw new Error("No token provided");
+    }
+
+    const response = await apiClient.delete(`/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return response.data;
+  }
+
+  static async updateUser(id: string, user: User) {
+    return apiClient.put(`/users/${id}`, user);
+  }
 }

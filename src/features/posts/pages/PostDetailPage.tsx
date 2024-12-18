@@ -3,57 +3,11 @@ import { Post } from "../types";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../../../api/posts.api";
 import { Title } from "../../../components/common/Title";
-import {
-  Box,
-  Button,
-  Chip,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Typography,
-} from "@mui/material";
+import { Box, Button, Chip, Typography } from "@mui/material";
 import { NotFoundPage } from "../../not-found/NotFound";
 import { useAppStore } from "../../../store/useAppStore";
 import { toast } from "react-toastify";
-
-export interface ConfirmationDialogRawProps {
-  open: boolean;
-  title: string;
-  message: string;
-  onClose: (value: boolean) => void;
-}
-
-function ConfirmDialog(props: ConfirmationDialogRawProps) {
-  const { onClose, title, message, open } = props;
-
-  const handleCancel = () => {
-    onClose(false);
-  };
-
-  const handleOk = () => {
-    onClose(true);
-  };
-
-  return (
-    <Dialog
-      sx={{ "& .MuiDialog-paper": { width: "80%", maxHeight: 435 } }}
-      maxWidth="xs"
-      open={open}
-    >
-      <DialogTitle>{title}</DialogTitle>
-      <DialogContent dividers>
-        <Typography>{message}</Typography>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleCancel}>Cancel</Button>
-        <Button variant="contained" color="primary" onClick={handleOk}>
-          Ok
-        </Button>
-      </DialogActions>
-    </Dialog>
-  );
-}
+import { ConfirmDialog } from "../../../components/common/ConfirmDialog";
 
 export function PostDetailPage() {
   const [post, setPost] = useState<Post | null>(null);
