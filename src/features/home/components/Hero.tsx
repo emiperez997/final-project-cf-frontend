@@ -27,7 +27,7 @@ export function Hero({ title, subtitle }: HeroProps) {
           Ver posts
         </Button>
       </Box>
-      <img src="/src/assets/cody.png" alt="" />
+      <img src="/cody.png" alt="" />
     </>
   );
 }

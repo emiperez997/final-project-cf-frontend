@@ -61,7 +61,7 @@ export function ContactForm({
       maxWidth="sm"
       sx={{ gap: 5, display: "flex", flexDirection: "column" }}
     >
-      <img src="/src/assets/cody_contacto.png" alt="Cody Contacto" />
+      <img src="/cody_contacto.png" alt="Cody Contacto" />
 
       <Typography maxWidth="sm" variant="subtitle1" color="primary">
         Para nosotros es importante conocer tus dudas, comentarios o

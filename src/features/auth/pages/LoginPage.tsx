@@ -25,7 +25,7 @@ export function LoginPage() {
             maxWidth: "300px",
             height: "auto",
           }}
-          src="/src/assets/cody_auth.png"
+          src="/cody_auth.png"
           alt="Cody Notebook"
         />
 

@@ -84,7 +84,7 @@ export function Navbar() {
       <Container maxWidth="lg">
         <Toolbar disableGutters>
           <img
-            src="/src/assets/logo-cf.png"
+            src="/logo-cf.png"
             alt="Logo Código Facilito"
             loading="lazy"
             height={30}
