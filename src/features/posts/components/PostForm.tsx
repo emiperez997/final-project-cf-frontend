@@ -1,18 +1,15 @@
 import {
   Autocomplete,
-  Button,
   Card,
   Container,
   createFilterOptions,
-  Divider,
   TextField,
-  Typography,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { formStyle } from "../../../theme/constants";
 import { LoadingButton } from "@mui/lab";
-import { NavLink } from "react-router-dom";
+
 import { CategoryApi } from "../../../api/categories.api";
 import { toast } from "react-toastify";
 import { Post, PostCreate } from "../types";
@@ -40,12 +37,7 @@ export function PostForm(
     (Category | AddCategory)[]
   >([]);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
+  const { register, handleSubmit, reset } = useForm();
 
   useEffect(() => {
     async function fetchCategories() {
