@@ -3,7 +3,7 @@ import { Post } from "../types";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { PostApi } from "../../../api/posts.api";
 import { Title } from "../../../components/common/Title";
-import { Box, Button, Chip, Typography } from "@mui/material";
+import { Box, Button, Chip, Skeleton, Typography } from "@mui/material";
 import { NotFoundPage } from "../../not-found/NotFound";
 import { useAppStore } from "../../../store/useAppStore";
 import { toast } from "react-toastify";
@@ -65,7 +65,28 @@ export function PostDetailPage() {
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 2,
+          justifyContent: "center",
+          alignItems: "center",
+          width: 600,
+        }}
+      >
+        <Skeleton variant="rectangular" width={200} height={80} />
+
+        <Skeleton variant="rectangular" width={280} height={30} />
+
+        <Skeleton variant="rectangular" width={120} height={30} />
+
+        <Skeleton variant="rectangular" width="100%" height={130} />
+      </Box>
+    );
+  }
 
   if (!post) return <NotFoundPage message="Post no encontrado" />;
 
@@ -120,7 +141,7 @@ export function PostDetailPage() {
         maxWidth="sm"
         my={5}
         variant="body1"
-        sx={{ color: "text.secondary", textAlign: "center" }}
+        sx={{ color: "text.secondary", textAlign: "left" }}
       >
         {post.content}
       </Typography>

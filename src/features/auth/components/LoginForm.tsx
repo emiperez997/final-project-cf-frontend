@@ -58,11 +58,9 @@ export function LoginForm() {
     } catch (error: AxiosError | any) {
       if (error.response?.status === 401) {
         toast.error("Usuario o contraseña incorrectos");
+      } else {
+        toast.error("Ocurrió un error inesperado");
       }
-
-      console.log(error);
-
-      toast.error("Ocurrió un error inesperado");
 
       setIsLoading(false);
     }

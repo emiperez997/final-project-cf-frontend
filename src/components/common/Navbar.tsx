@@ -166,23 +166,23 @@ export function Navbar() {
             }}
           >
             {pages.map(({ name, path }) => (
-              <Button
-                key={name}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, display: "block" }}
+              <NavLink
+                to={path}
+                className={({ isActive }) => (isActive ? "active" : "")}
+                style={{
+                  textDecoration: "none",
+                }}
               >
-                <NavLink
-                  to={path}
-                  className={({ isActive }) => (isActive ? "active" : "")}
-                  style={{
-                    textDecoration: "none",
-                  }}
+                <Button
+                  key={name}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, display: "block" }}
                 >
                   <Typography color="primary" sx={{ textAlign: "center" }}>
                     {name}
                   </Typography>
-                </NavLink>
-              </Button>
+                </Button>
+              </NavLink>
             ))}
           </Box>
           {isAuth ? (

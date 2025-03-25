@@ -7,9 +7,13 @@ export function PostList({ posts }: { posts: Partial<Post>[] }) {
     <Box
       sx={{
         display: "flex",
+        flexDirection: "column",
         gap: 2,
-        flexWrap: "wrap",
         justifyContent: "center",
+        width: {
+          sm: 600,
+          md: 800,
+        },
       }}
     >
       {posts.map((post) => (
